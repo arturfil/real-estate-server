@@ -13,7 +13,7 @@ const session      = require('session');
 require('dotenv').config();
 require('./config/passport-config');
 
-mongoose.connect('mongodb://localhost/real-estate-server');
+mongoose.connect(process.env.MONDODB_URI);
 
 const app = express();
 
