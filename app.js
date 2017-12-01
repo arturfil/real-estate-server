@@ -46,8 +46,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Routes Setup
+
 const index = require('./routes/index');
 app.use('/', index);
+
+const myAuthRoutes = require('./routes/auth-api-router');
+app.use('/api', myAuthRoutes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
