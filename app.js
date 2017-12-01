@@ -6,7 +6,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser   = require('body-parser');
 const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
+const cors         = require('cors');
+const passport     = require('passport');
+const session      = require('session');
 
+require('dotenv').config();
+require('./config/passport-config');
 
 mongoose.connect('mongodb://localhost/real-estate-server');
 
@@ -27,6 +32,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(layouts);
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:4200']
+}));
+app.use(
+  session({
+    secret: 'this is my secret real estate project phrase which does nothing',
+    resave: true,
+    saveUninitialized: true 
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 const index = require('./routes/index');
 app.use('/', index);
