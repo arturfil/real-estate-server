@@ -8,12 +8,12 @@ const layouts      = require('express-ejs-layouts');
 const mongoose     = require('mongoose');
 const cors         = require('cors');
 const passport     = require('passport');
-const session      = require('session');
+const session      = require('express-session');
 
 require('dotenv').config();
 require('./config/passport-config');
 
-mongoose.connect(process.env.MONDODB_URI);
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
