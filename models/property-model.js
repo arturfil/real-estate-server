@@ -17,6 +17,11 @@ const propertySchema = new Schema({
     area: {
         type: Number,
         required: [true, "What is the size of the property"]
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 
